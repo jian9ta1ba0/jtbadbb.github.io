@@ -3,7 +3,7 @@ layout: post
 title: Java注解基本知识
 date: 2017-10-23
 categories:
-- tool
+- Java
 tags: [Java, 注解]
 status: publish
 type: post
