@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 将网易云跟帖评论导入 disqus 
-date: 2017-08-20
+title: Java注解基本知识
+date: 2017-10-23
 categories:
 - tool
-tags: [转换器, 云跟帖，disqus]
+tags: [Java, 注解]
 status: publish
 type: post
 published: true
@@ -13,41 +13,139 @@ meta:
   views: '2'
 author:
   login: slayer
-  email: dongyado@gmail.com
+  email: 18723126233@163.com
   display_name: slayer
 ---
 
-### 背景
+## 定义：
+为代码提供一种形式化（元数据+源代码）的方法，为我们在其他地方可以方便的使用。元数据就是描述数据的数据，就是描述源代码的
+## 为什么引入注解：
+第一个原因：假如你想为应用设置很多的常量或参数，最好使用XML，因为它不会同特定的代码相连。如果你想把某个方法声明为服务，那么使用Annotation会更好一些，因为这种情况下需要注解和方法紧密耦合起来。
+第二个原因：Annotation定义了一种标准的描述元数据的方式
+## JAVA注解的ORM框架
+![161325133151441](https://user-images.githubusercontent.com/14925803/29908475-27c394d2-8e54-11e7-8d4c-8514b7ee0b97.jpg)
+## JAVA注解的实例
+/***********注解声明***************/
 
-两年前使用 jekyll+disqus  代替 wp 作为这个博客的系统的时候，把评论从 wp 导入了 disqus。  
-以为从此就可以愉快的码字了，然而过了几个月，由于某种原因，disqus 说不能访问就不能访问了。  
+     /**水果名称**/
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    public @interface FruitName {
+        String value() default "";
+       }
 
-在看过了国内几个第三方评论平台，最后投奔了多说，然后又因为某种原因，没用两个月，多说就关了。  
+     /**水果颜色注解*/
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    public @interface FruitColor {
+    /**颜色枚举 */
+    public enum Color{ BULE,RED,GREEN};
+    /**颜色属性@return  */
+    Color fruitColor() default Color.GREEN;
+    }
 
-好吧，关了就关了吧，这不还有网易云跟帖嘛，花了点时间切到了云跟帖，云跟帖提供了导入多说评论的功能，  
-就这样完美的导过去了，嗯，又能愉快的码字了。　  
+    /* * 水果供应者注解**/
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    public @interface FruitProvider {
+     /** 供应商编号@return*/
+     public int id() default -1;
+     /** 供应商名称 @return */
+     public String name() default "";
+     /** 供应商地址 @return*/
+     public String address() default "";
+    }
 
-然而，too young, 没用两个月，云跟帖也要关了。
+    /***********注解使用***************/
 
-到此，可以推测，国内的第三方评论平台全部被关掉只是时间问题。这时候q外的 disqus 反而是最稳定的平台了，  
+     public class Apple {
+    
+    @FruitName("Apple")
+    private String appleName;
+    
+    @FruitColor(fruitColor=Color.RED)
+    private String appleColor;
+    
+    @FruitProvider(id=1,name="陕西红富士集团",address="陕西省西安市延安路89号红富士大厦")
+    private String appleProvider;
+    
+    public void setAppleColor(String appleColor) {
+        this.appleColor = appleColor;
+    }
+    public String getAppleColor() {
+        return appleColor;
+    }
+    
+    public void setAppleName(String appleName) {
+        this.appleName = appleName;
+    }
+    public String getAppleName() {
+        return appleName;
+    }
+    
+    public void setAppleProvider(String appleProvider) {
+        this.appleProvider = appleProvider;
+    }
+    public String getAppleProvider() {
+        return appleProvider;
+    }
+    
+    public void displayName(){
+        System.out.println("水果的名字是：苹果");
+    }
+   }
 
-毕竟程序员总有办法能访问。所以这些天计划切回 disqus。但是 disqus 并不支持从云跟帖导出的评论数据。
-从这里反应出网易云跟帖的善后工作做的很不好，使用自定义的导出格式，给用户迁徙到其他平台造成了的很大的不方便。
+    /***********注解处理器***************/
 
-最常见的应该是导出 wp 的格式，这样绝大部分平台都会支持导入。
+    public class FruitInfoUtil {
+    public static void getFruitInfo(Class<?> clazz){
+        
+        String strFruitName=" 水果名称：";
+        String strFruitColor=" 水果颜色：";
+        String strFruitProvicer="供应商信息：";
+        
+        Field[] fields = clazz.getDeclaredFields();
+        
+        for(Field field :fields){
+            if(field.isAnnotationPresent(FruitName.class)){
+                FruitName fruitName = (FruitName) field.getAnnotation(FruitName.class);
+                strFruitName=strFruitName+fruitName.value();
+                System.out.println(strFruitName);
+            }
+            else if(field.isAnnotationPresent(FruitColor.class)){
+                FruitColor fruitColor= (FruitColor) field.getAnnotation(FruitColor.class);
+                strFruitColor=strFruitColor+fruitColor.fruitColor().toString();
+                System.out.println(strFruitColor);
+            }
+            else if(field.isAnnotationPresent(FruitProvider.class)){
+                FruitProvider fruitProvider= (FruitProvider) field.getAnnotation(FruitProvider.class);
+                strFruitProvicer=" 供应商编号："+fruitProvider.id()+" 供应商名称："+fruitProvider.name()+" 供应商地址："+fruitProvider.address();
+                System.out.println(strFruitProvicer);
+            }
+        }
+    }
+    }
 
-既然 disqus 不支持，网上也没有轮子，那就只能自己造一个轮子了。
+    /***********输出结果***************/
+    public class FruitRun {
 
-发这篇的博客的一个原因就是方便大家找到这个轮子，毕竟 github 比较难找到。
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        
+        FruitInfoUtil.getFruitInfo(Apple.class);
+        
+      }
 
-### 一个轮子，评论转换器
+    }
 
-就一个 converter.php 文件，从网易云跟帖导出的评论文件读取数据，生成 disqus 支持的导入文件。
-
-具体介绍参考下面的项目地址，项目有完整的原理和使用介绍。
-
-[yungentie-migrate-to-disqus][] 
-
-[yungentie-migrate-to-disqus]: https://github.com/dongyado/yungentie-migrate-to-disqus
+====================================
+ 水果名称：Apple
+ 水果颜色：RED
+ 供应商编号：1 供应商名称：陕西红富士集团 供应商地址：陕西省西安市延安路89号红富士大厦
 
 
