@@ -1,13 +1,13 @@
 # Site settings
-title: 生命不止，折腾不息
-author: MonsterSlayer
-author_avatar: /images/header.jpg
+title: love life ,love code
+author: jiangtaibao
+author_avatar: /images/kobe.png
 email: alias@domain.tld
-description: 生命不止，折腾不息 
-url: "https://dongyado.github.io"
-domain: "http://dongyado.com"
-github_username: dongyado
-github_site_repo: dongyado/dongyado.github.io
+description: 热爱生活，热爱代码 
+url: "https://jtbadbb.github.io/"
+domain: "https://jtbadbb.github.io/"
+github_username: jtbadbb
+github_site_repo: jtbadbb/jtbadbb.github.io
 disqus: monsterslayer
 
 
