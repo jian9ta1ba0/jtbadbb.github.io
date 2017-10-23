@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: Jekyll搭建个人博客
 date: 2017-10-23
