@@ -3,20 +3,38 @@
 
   {% include head.html %}
 
-    <body>
-    
-    <div class="wrapper">
+  <body>
 
-      {% include header.html %}
-      
-      {% include navi.html %}
+    <span class="mobile btn-mobile-menu">        
+      <div class="nav_container">
+         <nav class="nav-menu-item" style = "float:right">
+            <i class="nav-menu-item">
+              <a href="/#blog" title="{{site.blog_button.description}}" class="blog-button">  {{site.blog_button.title}}
+              </a>
+            </i>
+            {% for item in site.nav %}
+                <i class="nav-menu-item">
 
-      <div class="content">
-        <div class="articles">
-            {{ content }}
-        </div>
+                  <a href="{{item.url}}" title="{{item.description}}" class="btn-mobile-menu__icon">
+                      {{item.title}}
+                  </a>
+                </i>
+            {% endfor %}
+          </nav>
       </div>
-    </div>
+    </span>
+    
+    {% include side-panel.html %}
 
-    </body>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            {{ content }}
+            {% include footer.html %}
+        </div>
+    </div>
+    
+    {% include external.html %}
+    
+  </body>
+
 </html>

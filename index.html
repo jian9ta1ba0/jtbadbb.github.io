@@ -2,27 +2,33 @@
 layout: default
 ---
 
-<div>
+<div class="main-post-list hidden">
 
-  	{% assign index = true %}
-  	{% assign year  = '' %}
-
-    <ul class="article-list">
-    {% for post in site.posts %}
-		{% assign page = post %}
-        {% assign date = page.date | date: "%Y" %}
-
-        {% if year != date %}
-            {% assign year = date %}
-            <li class="list-year"> {{year}} </li>
-        {% endif%}
-
-        <li class="list-item">
-            <span class="list-date" >{{ page.date | date: "%Y-%m-%d" }}</span> <a href="{{ page.url }}">{{ page.title }}</a>
-        </li>
+  <ol class="post-list">
+    {% for post in paginator.posts %}
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="{{ post.url }}" title="访问 {{ post.title }}">{{ post.title }}</a></h2>
+      <p class="excerpt">{{ post.content | strip_html | strip_newlines | truncate: 250 }}&hellip;</p>
+      <div class="post-list__meta">        
+        <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">
+          <img src="/images/calendar.png" width="20px" /> 
+          {{ post.date | date: "%F"}}</time> 
+        <div class = "tag-img-icon">
+          <img src="/images/tag-icon.svg" width="20px" /> 
+        </div>
+        <a href="/tags">
+          <div class = "post-list-icon-mate">
+            <span class="post-list__meta--tags-right">{{ post.tags }}</span>
+          </div>
+          <div class = "post-list-small-mate">
+          <a class="btn-border-small" href={{ post.url }}>阅读全文 » </a>
+          </div>
+      </div>
+      <hr class="post-list__divider" />
+    </li>
     {% endfor %}
-</ul>
+  </ol>
 
-  <p class="rss-subscribe">Subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a> or browse <a href="https://github.com/{{ site.github_site_repo }}" target="_blank">source on GitHub</a>.</p>
+  {% include pagination.html %}
 
 </div>
