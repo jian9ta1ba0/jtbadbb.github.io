@@ -22,5 +22,3 @@ love life ，love code
 是一个基于OneNet云平台的物联网公司，无论你是运营、产品、开发 或者是终端用户都可以了解下我们公司。
 
 
-{% include comments.html %}
-
