@@ -13,7 +13,8 @@ AMQP的主要特征是面向消息、队列、路由（包括点对点和发布/
 
 ### RabbitMQ系统架构
 RabbitMQ Server： 也叫broker server，是一种传输服务，负责维护一条从Producer到consumer的路线，保证数据能够按照指定的方式进行传输。
-![rabbitmq.jpg-79.4kB][1]
+![rabbitmq.jpg-79.4kB][1]  
+
 Producer，数据的发送方。  
 Consumer，数据的接收方。  
 Exchanges， 接收消息，转发消息到绑定的队列。主要使用3种类型：direct， topic， fanout。  
