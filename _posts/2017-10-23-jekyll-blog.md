@@ -2,23 +2,15 @@
 layout: post
 title: Jekyll搭建个人博客
 date: 2017-10-23
-categories:
-- Tool
-tags: [Jekyll]
-status: publish
-type: post
-published: true
-meta:
-  _edit_last: '1'
-  views: '2'
-author:
-  login: jtbadbb
-  email: 18723126233@163.com
-  display_name: jiangtaibao
+description: "jekyll+Github，搭建自己的博客"
+tags: [Jekyll,工具]
+
 ---
 
 ## 介绍：
-Jekyll是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过Markdown（或者 Textile）以及Liquid转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll也可以运行在GitHub Page上，也就是说，你可以使用GitHub的服务来搭建你的项目页面、博客或者网站，而且是完全免费的。使用 Jekyll 搭建博客之前要确认下本机环境，Git环境（用于部署到远端）、Ruby环境（Jekyll是基于 Ruby 开发的）、包管理器 RubyGems。如果你是Mac用户，你就需要安装Xcode和Command-Line Tools了。下载方式Preferences→Downloads→Components。Jekyll是一个免费的简单静态网页生成工具，可以配合第三方服务例如：Disqus（评论）、多说(评论)以及分享等等扩展功能，Jekyll 可以直接部署在 Github（国外）或Coding（国内） 上，可以绑定自己的域名。Jekyll中文文档、Jekyll英文文档、Jekyll主题列表。
+Jekyll是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过Markdown（或者 Textile）以及Liquid转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll也可以运行在GitHub Page上，也就是说，你可以使用GitHub的服务来搭建你的项目页面、博客或者网站，而且是完全免费的。  
+使用 Jekyll 搭建博客之前要确认下本机环境，Git环境（用于部署到远端）、Ruby环境（Jekyll是基于 Ruby 开发的）、包管理器 RubyGems。如果你是Mac用户，你就需要安装Xcode和Command-Line Tools了。下载方式Preferences→Downloads→Components。  
+Jekyll是一个免费的简单静态网页生成工具，可以配合第三方服务例如：Disqus（评论）、多说(评论)以及分享等等扩展功能，Jekyll 可以直接部署在 Github（国外）或Coding（国内） 上，可以绑定自己的域名。Jekyll中文文档、Jekyll英文文档、Jekyll主题列表。
 
 
 ## Jekyll 环境配置：
