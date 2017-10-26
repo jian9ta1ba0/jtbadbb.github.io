@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "RabbitMQ简介和安装"
 date: 2017-10-26 
@@ -12,14 +12,15 @@ AMQP，即Advanced message Queuing Protocol，高级消息队列协议，是应�
 AMQP的主要特征是面向消息、队列、路由（包括点对点和发布/订阅）、可靠性、安全。
 
 ### RabbitMQ系统架构
-RabbitMQ Server： 也叫broker server，是一种传输服务，负责维护一条从Producer到consumer的路线，保证数据能够按照指定的方式进行传输。  
+RabbitMQ Server： 也叫broker server，是一种传输服务，负责维护一条从Producer到consumer的路线，保证数据能够按照指定的方式进行传输。
+![rabbitmq.jpg-79.4kB][1]
 Producer，数据的发送方。  
 Consumer，数据的接收方。  
-Exchanges 接收消息，转发消息到绑定的队列。主要使用3种类型：direct， topic， fanout。  
-Queue RabbitMQ内部存储消息的对象。相同属性的queue可以重复定义，但只有第一次定义的有效。  
-Bindings 绑定Exchanges和Queue之间的路由。  
-Connection： 就是一个TCP的连接。Producer和consumer都是通过TCP连接到RabbitMQ Server的。  
-Channel：虚拟连接。它建立在上述的TCP连接中。数据流动都是在Channel中进行的。也就是说，一般情况是程序起始建立TCP连接，第二步就是建立这个Channel。
+Exchanges， 接收消息，转发消息到绑定的队列。主要使用3种类型：direct， topic， fanout。  
+Queue， RabbitMQ内部存储消息的对象。相同属性的queue可以重复定义，但只有第一次定义的有效。  
+Bindings， 绑定Exchanges和Queue之间的路由。  
+Connection， 就是一个TCP的连接。Producer和consumer都是通过TCP连接到RabbitMQ Server的。  
+Channel，虚拟连接。它建立在上述的TCP连接中。数据流动都是在Channel中进行的。也就是说，一般情况是程序起始建立TCP连接，第二步就是建立这个Channel。
 
 ### RabbitMQ安装
 
@@ -62,3 +63,6 @@ RPM- /etc/rabbitmq/
 #rabbitmqctl  set_user_tags user_name administrator –将用户设置为管理员角色  
 #rabbitmqctl set_permissions -p / user_name “.*” “.*” “.*”  
 –在 / 虚拟主机里设置iom用户配置权限，写权限，读权限。.*是正则表达式里用法。rabbitmq的权限是根据不同的虚拟主机（virtual hosts）配置的，同用户在不同的虚拟主机（virtual hosts）里可能不一样。
+
+
+  [1]: http://static.zybuluo.com/jiangtaibao/cp2oczj7p1rqa8luhc49m8ep/rabbitmq.jpg
