@@ -25,7 +25,7 @@ RabbitMQ 将在下面的情况中对消息进行 confirm ：
   
   注意：如果consumer 没调用basic.qos 方法设置prefetch_count=1，那即使该consumer有未ack的messages，RabbitMQ仍会继续发messages给它。
   
-  ### 消息持久化
+### 消息持久化
 消息确认机制确保了consumer退出时消息不会丢失，但如果是RabbitMQ本身因故障退出，消息还是会丢失。为了保证在RabbitMQ出现意外情况时数据仍没有丢失，需要将queue和message都要持久化。  
 queue持久化：  
     channel.queue_declare(queue=“hello”, durable=True)
