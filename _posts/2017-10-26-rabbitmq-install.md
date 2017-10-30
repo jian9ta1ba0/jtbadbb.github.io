@@ -4,7 +4,6 @@ title: "RabbitMQ简介和安装"
 date: 2017-10-26 
 description: "RabbitMQ系统架构，以及linux安装RabbitMQ"
 tag: [消息机制, RabbitMQ]
-
 ---
 ## 正文：
 RabbitMQ是一个开源的AMQP实现，服务器端用Erlang语言编写，支持多种客户端，如：Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP等，支持AJAX。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。  
