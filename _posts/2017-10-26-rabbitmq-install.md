@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "RabbitMQ简介和安装"
 date: 2017-10-26 
